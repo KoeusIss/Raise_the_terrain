@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
+#include <unistd.h>
 /* Macros */
 #define WINDOW_WIDTH 1260
 #define WINDOW_HEIGHT 720
@@ -28,7 +29,7 @@ typedef struct SDL_Instance
 
 /* Prototypes */
 int init_instance(SDL_Instance *);
-int draw_stuff(SDL_Instance *instance);
+int draw_stuff(SDL_Instance *instance, FILE *fp);
 int poll_event(void);
 
 #endif /* _TERRAIN_H */
