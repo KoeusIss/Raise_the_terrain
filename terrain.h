@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <unistd.h>
+#include <math.h>
 /* Macros */
 #define WINDOW_WIDTH 1260
 #define WINDOW_HEIGHT 720
@@ -16,7 +17,7 @@
 #define X_OFFSET (WINDOW_WIDTH / 2)
 #define Y_OFFSET 150
 #define CELL 120
-
+extern int angle;
 /**
  * Struct SDL_Instance - data structure for game instance
  * @window: the game window
