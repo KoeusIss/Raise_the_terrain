@@ -11,8 +11,12 @@
 #define WINDOW_HEIGHT 720
 #define PADDING_TOP 170
 #define PADDING_LEFT 50
-#define FAIL 1
-#define SUCCESS 0
+#define WX(x, y) (0.7 * x - 0.7 * y)
+#define WY(x, y, z) (0.3 * x + 0.3 * y - z)
+#define X_OFFSET (WINDOW_WIDTH / 2)
+#define Y_OFFSET 150
+#define CELL 120
+
 /**
  * Struct SDL_Instance - data structure for game instance
  * @window: the game window
@@ -28,8 +32,9 @@ typedef struct SDL_Instance
 } SDL_Instance;
 
 /* Prototypes */
-int init_instance(SDL_Instance *);
-int draw_stuff(SDL_Instance *instance, FILE *fp);
+int init_instance(SDL_Instance *instance);
+int draw_terrain(SDL_Instance *instance, int z[8][8]);
 int poll_event(void);
+void transpose(SDL_Point a[8][8], SDL_Point b[8][8]);
 
 #endif /* _TERRAIN_H */

@@ -16,13 +16,13 @@ int poll_event(void)
 		switch (event.type)
 		{
 			case SDL_QUIT:
-				return (FAIL);
+				return (1);
 			case SDL_KEYDOWN:
 				key = event.key;
 			if (key.keysym.scancode == 0x29)
-				return (FAIL);
+				return (1);
 			break;
 		}
 	}
-	return (SUCCESS);
+	return (0);
 }
