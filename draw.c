@@ -1,29 +1,34 @@
-#include "terrain.h"
+	#include "terrain.h"
 /**
  * draw_terrain - draws stuff in the instance renderer
  * @instance: the game instance draw
- * @z: the attitude matrix
+ * @grid: the attitude matrix
  * Return: void
  */
-int draw_terrain(SDL_Instance *instance, int z[8][8])
+int draw_terrain(SDL_Instance *instance, SDL_Grid *grid)
 {
-	SDL_Point points[8][8];
-	SDL_Point tr_points[8][8];
+	SDL_Point points[GRID_WIDTH][GRID_WIDTH];
+	SDL_Point tr_points[GRID_WIDTH][GRID_WIDTH];
 	int i, j, x, y;
-	int a;
+	float a;
 
-	a = (int) angle * M_PI / 180;
+	a = grid->angle * M_PI / 180;
 	for (i = 0; i < 8; i++)
 	{	
 		for (j = 0; j < 8; j++)
 		{
-			x = WX(j * CELL, i * CELL) + X_OFFSET;
-			y = WY(j * CELL, i * CELL, z[i][j]) + Y_OFFSET;
-			points[i][j].x = x * cos(a) - y * sin(a) ;
-			points[i][j].y = x * sin(a) + y * cos(a);
+			grid->x[i][j] = (i * CELL);
+			grid->y[i][j] = (j * CELL);
+			x = RX(grid->x[i][j], grid->y[i][j], a);
+			y = RY(grid->x[i][j], grid->y[i][j], a);
+			x = WX(x, y) + X_OFFSET;
+			y = WY(x, y, grid->z[i][j]) + Y_OFFSET;
+			points[i][j].x = x;
+			points[i][j].y = y;
 		}
 	}
 	transpose(points, tr_points);
+	SDL_SetRenderDrawColor(instance->renderer, 40, 255, 150, 0);
 	for (i = 0; i < 8; i++)
 	{
 		SDL_RenderDrawLines(instance->renderer, points[i], 8);

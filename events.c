@@ -1,12 +1,13 @@
 #include "terrain.h"
-int angle = 20;
+int angle = 0;
 /**
  * poll_events - handles the use event
+ * @grid: the grid instance
  *
  * Return: (Success) if events goes well
  * ------- (Fail) if something goes wrong
  */
-int poll_event(void)
+int poll_event(SDL_Grid *grid)
 {
 	SDL_Event event;
 	SDL_KeyboardEvent key;
@@ -19,14 +20,12 @@ int poll_event(void)
 				return (1);
 			case SDL_KEYDOWN:
 				key = event.key;
-			if (key.keysym.scancode == 0x29)
+			if (key.keysym.sym == SDLK_ESCAPE)
 				return (1);
-			case SDLK_LEFT:
-				angle += 20;
-				break;
-			case SDLK_RIGHT:
-				angle -= 20;
-				break;
+			if (key.keysym.sym == SDLK_LEFT)
+				grid->angle += 1;
+			if (key.keysym.sym == SDLK_RIGHT)
+				grid->angle -= 1;
 			break;
 		}
 	}
