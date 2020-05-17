@@ -17,8 +17,8 @@ int draw_terrain(SDL_Instance *instance, SDL_Grid *grid)
 	{	
 		for (j = 0; j < 8; j++)
 		{
-			grid->x[i][j] = (i * CELL);
-			grid->y[i][j] = (j * CELL);
+			grid->x[i][j] = (j * CELL);
+			grid->y[i][j] = (i * CELL);
 			x = RX(grid->x[i][j], grid->y[i][j], a);
 			y = RY(grid->x[i][j], grid->y[i][j], a);
 			x = WX(x, y) + X_OFFSET;
