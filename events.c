@@ -1,5 +1,4 @@
 #include "terrain.h"
-int angle = 0;
 /**
  * poll_events - handles the use event
  * @grid: the grid instance
